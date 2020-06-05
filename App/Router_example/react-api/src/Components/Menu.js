@@ -2,34 +2,43 @@
  import Search from './Search.js';
  import '../css/Menu.css';
  import {
-  Link
+  Link,
+  Redirect,
+  withRouter
 } from "react-router-dom";
  class Menu extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
   }
- 
+  
+  cerrarSesion = () => {
+    console.log("presiono");
+    localStorage.removeItem('sesion');
+   this.props.history.push('/posts/');
+  }
   render(){
-     const linkLogin = ()=>{
-      return (
+
+     const linkloguearse =(
+    
               <div>
                   <div className="actions">
                      <Link className="button btn-blue" to="/login">login</Link>
                   </div>
                   <div className="actions">
-                     <Link className="button btn-blue" to="/loadHour">singin</Link>
+                     <Link className="button btn-blue" to="/home">registrarse</Link>
+
                   </div>
               </div>
 
               );
-    };
-      const linkloguearse = (
+  
+      const linklogueado = (
               <div>
                   <div className="actions">
                     <Link className="button btn-blue" to="/">Home</Link>
                   </div>
                   <div className="actions">
-                     <Link className="button btn-blue" to="/logoff">sclose session</Link>
+                    <button className="button btn-blue" onClick={this.cerrarSesion}>cerrar Sesion</button>
                   </div>
 
               </div>
@@ -38,14 +47,13 @@
         return (
           <div className="container">
             <div className="subcontainer">
-
               <div className="logo">
                {this.props.title}
               </div>
-                  {(localStorage.getItem("sesion"))?linkloguearse:linkLogin} 
+                  {(localStorage.getItem("sesion"))?linklogueado:linkloguearse} 
               </div>
           </div>
         );}
     }
 
-    export default Menu;
+    export default withRouter(Menu);

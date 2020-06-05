@@ -13,11 +13,11 @@ import '../css/Main.css';
 
 
     render(){
-      const linkLogin = (
+      const linkLoguearse = (
               <Login />
         );
 
-      const linkloggedin = (
+      const linklogueado = (
               <Redirect to="home" />
         );
 
@@ -29,12 +29,11 @@ import '../css/Main.css';
               home
             </Route>
             <Route path="/logoff">asd
-              {localStorage.removeItem('sesion')}
               {(localStorage.getItem("sesion"))}
             </Route>
             <Route path="/login">
                   <div className="login">
-                    {(localStorage.getItem("sesion"))?"truesss":"falsossss"}
+                    {(localStorage.getItem("sesion"))?linklogueado:linkLoguearse}
                   </div>
             </Route>
             <Route path="/loadHour">

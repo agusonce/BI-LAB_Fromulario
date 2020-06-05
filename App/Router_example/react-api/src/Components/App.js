@@ -28,10 +28,7 @@ import '../css/App.css';
           <div className="app">
             < Menu title="Amazon"/>
             < Main/>
-            < button onClick={this.BuscarUsuario}>buscar Usuario </button>
-            <div className="login">
-            ss
-            </div>
+
           </div>
               );
       }

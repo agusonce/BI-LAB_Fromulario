@@ -1,6 +1,8 @@
 import React,{Component} from 'react';
 import '../css/login.css';
-
+ import {
+  withRouter
+} from "react-router-dom";
 
 
 class Login extends React.Component {
@@ -50,6 +52,8 @@ class Login extends React.Component {
                               } 
                               console.log("caso2",sesion);
                               localStorage.setItem('sesion',JSON.stringify(sesion));
+                              this.props.history.push('/posts/');
+
                             });
       event.preventDefault();
     }
@@ -74,4 +78,4 @@ class Login extends React.Component {
     );
   }
 }
-export default Login;
+export default withRouter(Login);
