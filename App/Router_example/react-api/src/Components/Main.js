@@ -1,46 +1,51 @@
 import React from 'react';
-import Login from './Login';
+import SignIn from './SignIn';
+import SignUp from './SignUp';
+import Home from './Home';
 import '../css/Main.css';
  import {
   Switch,
   Route,
-  Redirect
+  Redirect,
+  withRouter
+
 } from "react-router-dom";
  class Main extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-
     render(){
-      const linkLoguearse = (
-              <Login />
+        const linkSignIn = (
+              <SignIn />
+        );
+        const linkSignUp = (
+              <SignUp />
         );
 
-      const linklogueado = (
-              <Redirect to="home" />
+        const linkSendHome = (
+              <Redirect to="/home" />
         );
 
+        const linkHome = (
+              <Home />
+        );
 
 
         return (
           <Switch>
+           
             <Route path="/home">
-              home
+              {(localStorage.getItem("sesion"))?linkHome:linkSignIn}
             </Route>
-            <Route path="/logoff">asd
-              {(localStorage.getItem("sesion"))}
-            </Route>
-            <Route path="/login">
+            <Route path="/sign-in">
                   <div className="login">
-                    {(localStorage.getItem("sesion"))?linklogueado:linkLoguearse}
+                   {(localStorage.getItem("sesion"))?linkSendHome:linkSignIn}
                   </div>
             </Route>
-            <Route path="/loadHour">
-              cargar hora
+            <Route path="/sign-up">
+                <div className="login">
+                   {(localStorage.getItem("sesion"))?linkSendHome:linkSignUp}
+                  </div>
             </Route>
           </Switch>
         );
     }
 }
-    export default Main;
+export default  withRouter(Main);

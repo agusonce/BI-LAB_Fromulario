@@ -1,11 +1,12 @@
 import React,{Component} from 'react';
-import '../css/login.css';
+import '../css/SignIn.css';
  import {
-  withRouter
+  withRouter,
+  Link
 } from "react-router-dom";
 
 
-class Login extends React.Component {
+class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {user: '',
@@ -33,7 +34,7 @@ class Login extends React.Component {
     event.preventDefault();
   }
 
-  BuscarUsuario =(event) =>{
+  BuscarUsuario = (event) =>{
     
 
       let data = {user:this.state.user
@@ -52,7 +53,7 @@ class Login extends React.Component {
                               } 
                               console.log("caso2",sesion);
                               localStorage.setItem('sesion',JSON.stringify(sesion));
-                              this.props.history.push('/posts/');
+                              this.props.history.push('/home');
 
                             });
       event.preventDefault();
@@ -72,10 +73,10 @@ class Login extends React.Component {
           <input type="text" value={this.state.password} onChange={this.ChangePass} />
           <p className="ms-error">*ingrese un valor valido</p>
         </label>
-            
         <input type="submit" value="Submit" />
+        <Link className="button link" to="/sign-up">registrarse</Link>
       </form>
     );
   }
 }
-export default withRouter(Login);
+export default withRouter(SignIn);

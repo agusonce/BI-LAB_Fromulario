@@ -1,5 +1,5 @@
 .container{
-    background-color: rgb(19, 42, 71);
+    background-color: rgb(76, 150,24);
     color: white;
     border-bottom: solid 1px #ccc;
     padding: 10px;
@@ -41,6 +41,16 @@
     display: inline;
     padding: 10px;
 }
+
+
+.actions .button{
+}
+
+.btn-white{
+    color: white;
+
+}
+
 
 .new-item-panel-container{
     background-color: #000;
