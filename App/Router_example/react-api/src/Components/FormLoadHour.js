@@ -1,7 +1,10 @@
 import React,{Component} from 'react';
 import Selec from './Selec';
-import './css/form.css';
-
+import '../css/form.css';
+import {
+  Link,
+  withRouter
+} from "react-router-dom";
 
 
 class FormLoadHour extends React.Component {
@@ -67,4 +70,4 @@ class FormLoadHour extends React.Component {
     );
   }
 }
-export default FormLoadHour;
+export default  withRouter(FormLoadHour);

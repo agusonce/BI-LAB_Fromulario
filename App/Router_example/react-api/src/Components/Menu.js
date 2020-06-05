@@ -25,10 +25,13 @@
       const linklogueado = (
               <div>
                   <div className="actions">
-                    <Link className="button btn-blue" to="/home">Home</Link>
+                    <Link className="button btn-white" to="/home">Home</Link>
                   </div>
                   <div className="actions">
-                    <button className="button btn-blue" onClick={this.cerrarSesion}>cerrar Sesion</button>
+                    <Link className="button btn-white" to="/Load-hours">Load Hour</Link>
+                  </div>
+                  <div className="actions">
+                    <button className="button btn-white" onClick={this.cerrarSesion}>Sign Up</button>
                   </div>
 
               </div>

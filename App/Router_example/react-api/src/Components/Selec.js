@@ -1,5 +1,5 @@
  import React,{Component} from 'react';
- import './css/selec.css';
+ import '../css/selec.css';
 
 
 class Selec extends React.Component {

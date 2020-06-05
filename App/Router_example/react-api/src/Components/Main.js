@@ -2,6 +2,8 @@ import React from 'react';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import Home from './Home';
+import FormLoadHour from './FormLoadHour';
+
 import '../css/Main.css';
  import {
   Switch,
@@ -26,6 +28,9 @@ import '../css/Main.css';
         const linkHome = (
               <Home />
         );
+        const linkLoadHour = (
+              <FormLoadHour />
+        );
 
 
         return (
@@ -44,6 +49,12 @@ import '../css/Main.css';
                    {(localStorage.getItem("sesion"))?linkSendHome:linkSignUp}
                   </div>
             </Route>
+            <Route path="/Load-hours">
+              <div className="login">
+                 {(localStorage.getItem("sesion"))?linkLoadHour:linkSignUp}
+              </div>
+            </Route>
+            
           </Switch>
         );
     }
