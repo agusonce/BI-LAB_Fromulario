@@ -20,6 +20,9 @@ import '../css/Main.css';
         const linkSignUp = (
               <SignUp />
         );
+        const linkSendSignIn = (
+              <Redirect to="/sign-in" />
+        );
 
         const linkSendHome = (
               <Redirect to="/home" />
@@ -35,9 +38,9 @@ import '../css/Main.css';
 
         return (
           <Switch>
-           
+            
             <Route path="/home">
-              {(localStorage.getItem("sesion"))?linkHome:linkSignIn}
+              {(localStorage.getItem("sesion"))?linkHome:linkSendSignIn}
             </Route>
             <Route path="/sign-in">
                   <div className="login">

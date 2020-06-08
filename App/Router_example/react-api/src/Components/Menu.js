@@ -31,7 +31,7 @@
                     <Link className="button btn-white" to="/Load-hours">Load Hour</Link>
                   </div>
                   <div className="actions">
-                    <button className="button btn-white" onClick={this.cerrarSesion}>Sign Up</button>
+                    <button className="button btn-white" onClick={this.cerrarSesion}>Sign Out</button>
                   </div>
 
               </div>
