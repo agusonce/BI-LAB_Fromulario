@@ -39,6 +39,7 @@ class SignIn extends React.Component {
 
       let data = {user:this.state.user
                   ,password: this.state.password};
+                  console.log(data);
         fetch('/api/getUser',{
                             method: 'POST', // or 'PUT'
                             body: JSON.stringify(data), // data can be `string` or {object}!
@@ -48,12 +49,16 @@ class SignIn extends React.Component {
         .then(res => res.json())
         .then(nombresjson => {
                               let sesion ={
-                                "IdUser": nombresjson.recordsets[0][0].ID_USUARIOS,
-                                "user": nombresjson.recordsets[0][0].USUARIO
+                                "IdUser": nombresjson.recordsets[0][0].Id_Usuario,
+                                "user": nombresjson.recordsets[0][0].Usuario
                               } 
+                              console.log("caso1",nombresjson.recordsets[0][0]);
                               console.log("caso2",sesion);
-                              localStorage.setItem('sesion',JSON.stringify(sesion));
+                              localStorage.setItem('sesion',JSON.stringify(nombresjson.recordsets[0][0]));
+                              console.log("caso3",localStorage);
+
                               this.props.history.push('/home');
+
 
                             });
       event.preventDefault();

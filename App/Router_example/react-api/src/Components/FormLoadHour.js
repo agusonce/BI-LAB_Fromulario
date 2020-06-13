@@ -16,7 +16,9 @@ class FormLoadHour extends React.Component {
 				          selec : [{value:'agus'},
 				  		            {value:'mauro'},
 				  		            {value:'kevin'}],
-				          selecValue : 'agus'
+				          selecValue : 'agus',
+                  Tareas:[],
+                  Tarea:''
 				        };
 
     this.handleChange = this.handleChange.bind(this);
@@ -43,6 +45,18 @@ class FormLoadHour extends React.Component {
   	this.setState({selecValue: datachild})
 
   }
+  componentDidMount(){
+
+        fetch('/api/getTasks',{method: 'GET'})
+        .then(res => res.json())
+        .then(nombresjson => {
+                              console.log("caso1",nombresjson.recordsets[0][0]);
+                              console.log("caso1",nombresjson.recordsets[0]);
+                              this.setState({Tareas : nombresjson.recordsets[0]})
+                              console.log("caso1",this.state.Tareas);
+
+                            });
+  }
 
   render() {
     return (
@@ -61,7 +75,7 @@ class FormLoadHour extends React.Component {
 
         <label>
           <p>proyecto</p>
-            <Selec  values={this.state.selecValue} options={this.state.selec} onChangea={this.toggleShow} />
+            <Selec  values={this.state.selecValue} options={this.state.Tareas} onChangea={this.toggleShow} />
           <p className="ms-error">*Seleccione un valor</p>
         </label>
             

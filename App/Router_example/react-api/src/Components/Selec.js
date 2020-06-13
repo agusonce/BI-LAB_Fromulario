@@ -27,7 +27,7 @@ class Selec extends React.Component {
           <select value={this.props.value} onChange={saludar} className="selec">
             {
               this.props.options.map(item => 
-                <option key={item.value} value={item.value}>{item.value}</option>
+                <option key={item.Id} value={item.Id}>{item.Value}</option>
               )
             }
           </select>

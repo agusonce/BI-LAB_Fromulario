@@ -6,16 +6,15 @@ var controller = {
 			message : 'hola agus'
 		});
 	},
-	getUser: function(req,res){
-		var usuario = req.body.user;
-		var pass = req.body.password;
+	getTasks: function(req,res){
+		
 		var request = new sql.Request();
-		request.query("SELECT Nombre,Apellido,Usuario,Pasword,Estado FROM Usuarios WHERE Usuario='"+usuario+"' and Pasword = '"+pass+"'", function (err, recordset) {
+		request.query("SELECT Id_Tarea Id,Tarea Value FROM dbo.Tareas", function (err, Tasks) {
             
             if (err) console.log(err)
-
+            	console.log(Tasks);
             // send records as a response
-            return res.status(200).send(recordset);
+            return res.status(200).send(Tasks);
             
         });
 	}
