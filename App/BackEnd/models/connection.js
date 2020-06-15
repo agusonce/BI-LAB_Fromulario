@@ -5,7 +5,7 @@
    var config = {
         user: 'agus',
         password: 'agus123',
-        server: 'DESKTOP-3QSSO97',
+        server: 'DESKTOP-MB1V6PP',
         port: 1433,
         database: 'BI-LAB'
     };

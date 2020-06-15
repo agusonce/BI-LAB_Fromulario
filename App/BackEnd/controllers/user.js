@@ -10,7 +10,7 @@ var controller = {
 		var usuario = req.body.user;
 		var pass = req.body.password;
 		var request = new sql.Request();
-		request.query("SELECT Nombre,Apellido,Usuario,Pasword,Estado FROM Usuarios WHERE Usuario='"+usuario+"' and Pasword = '"+pass+"'", function (err, recordset) {
+		request.query("SELECT Nombre,Apellido,Usuario,Password,Estado FROM Usuarios WHERE Usuario='"+usuario+"' and Password = '"+pass+"'", function (err, recordset) {
             
             if (err) console.log(err)
 

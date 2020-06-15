@@ -5,21 +5,13 @@
 class Selec extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: 'coconut',
-                  name: 'agus'};
-
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
- 
+  handleChange(event) {this.setState({value: event.target.value});}
 
   render() {
    let saludar= (event) =>{
-    //console.log(this.props.options);
     this.props.onChangea(event.target.value);
   }
 

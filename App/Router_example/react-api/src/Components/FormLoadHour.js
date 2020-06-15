@@ -11,12 +11,8 @@ class FormLoadHour extends React.Component {
   constructor(props) {
     super(props);
     this.state = {value : '',
-                  mail : '',
+                  fecha : '',
                   apellido :'',
-				          selec : [{value:'agus'},
-				  		            {value:'mauro'},
-				  		            {value:'kevin'}],
-				          selecValue : 'agus',
                   Tareas:[],
                   Tarea:''
 				        };
@@ -30,8 +26,8 @@ class FormLoadHour extends React.Component {
 
   }
 
-  handleChangeMail = (event) => {
-  this.setState({mail: event.target.value});
+  handleChangeFecha = (event) => {
+  this.setState({fecha: event.target.value});
   }
 
   handleSubmit(event) {
@@ -40,9 +36,9 @@ class FormLoadHour extends React.Component {
     event.preventDefault();
   }
 
-  toggleShow = (datachild) => {
+  toggleShowTarea = (datachild) => {
   	console.log(datachild);
-  	this.setState({selecValue: datachild})
+  	this.setState({Tarea: datachild})
 
   }
   componentDidMount(){
@@ -61,24 +57,30 @@ class FormLoadHour extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="form">
-        <label>
-         <p> Name:{this.state.value} </p>
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-          <p className="ms-error">*comprete el formulario</p>
-        </label>
+
 
         <label>
-          <p>Mail:{this.state.mail}</p>
-          <input type="text" value={this.state.mail} onChange={this.handleChangeMail} />
+          <p>Fecha : {this.state.fecha}</p>
+          <input  type="date" value={this.state.fecha} onChange={this.handleChangeFecha} />
           <p className="ms-error">*ingrese un valor valido</p>
         </label>
 
         <label>
           <p>proyecto</p>
-            <Selec  values={this.state.selecValue} options={this.state.Tareas} onChangea={this.toggleShow} />
+            <Selec  
+                    options={this.state.Tareas} 
+                    onChangea={this.toggleShowTarea} 
+            />
           <p className="ms-error">*Seleccione un valor</p>
         </label>
-            
+        
+        <label>
+         <p> Descripcion </p>
+          <input name="nombre" type="text" value={this.state.value} onChange={this.handleChange} />
+          <p className="ms-error">*Ingrese una descripcion de realizado</p>
+        </label>
+
+
         <input type="submit" value="Submit" />
       </form>
     );
