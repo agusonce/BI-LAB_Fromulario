@@ -1,5 +1,6 @@
  import React from 'react';
  import '../css/Menu.css';
+ import Logo from '../img/BILAB2.png';
  import {
   Link,
   withRouter
@@ -23,25 +24,27 @@
               );
   
       const linklogueado = (
-              <div>
+              <div className="nav">
                   <div className="actions">
-                    <Link className="button btn-white" to="/home">Home</Link>
+                    <Link className="button btn-color1" to="/home">Home</Link>
                   </div>
                   <div className="actions">
-                    <Link className="button btn-white" to="/Load-hours">Load Hour</Link>
+                    <Link className="button btn-color1" to="/Load-hours">Load Hour</Link>
                   </div>
                   <div className="actions">
-                    <button className="button btn-white" onClick={this.cerrarSesion}>Sign Out</button>
+                    <button className="button btn-color1" onClick={this.cerrarSesion}>Sign Out</button>
                   </div>
 
               </div>
 
         );
+
         return (
           <div className="container">
             <div className="subcontainer">
               <div className="logo">
-               {this.props.title}
+                <img src={Logo}  />
+               
               </div>
 
               {(localStorage.getItem("sesion"))?linklogueado:linkloguearse} 

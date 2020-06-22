@@ -2,6 +2,7 @@ import React from 'react';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import Home from './Home';
+import Ms from './Ms';
 import FormLoadHour from './FormLoadHour';
 
 import '../css/Main.css';
@@ -38,7 +39,17 @@ import '../css/Main.css';
 
         return (
           <Switch>
-            
+            <Route
+                exact
+                path="/"
+                render={() => {
+                    return (
+                      (localStorage.getItem("sesion"))?
+                      <Redirect to="/home" /> :
+                      <Redirect to="/sign-in" /> 
+                    )
+                }}
+              />
             <Route path="/home">
               {(localStorage.getItem("sesion"))?linkHome:linkSendSignIn}
             </Route>
@@ -56,6 +67,12 @@ import '../css/Main.css';
               <div className="login">
                  {(localStorage.getItem("sesion"))?linkLoadHour:linkSignUp}
               </div>
+            </Route>
+            <Route path="/Ms-Error">
+                <Ms key="error" message='error' />
+            </Route>
+            <Route path="/Ms-succes">
+                <Ms key="succes" message='succes' />
             </Route>
             
           </Switch>

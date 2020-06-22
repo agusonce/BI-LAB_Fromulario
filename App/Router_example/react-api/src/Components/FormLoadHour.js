@@ -6,55 +6,128 @@ import {
   withRouter
 } from "react-router-dom";
 
-
+// FormLoadHour: variable para saber a si hay que mostrar el ms de 'complete todos los campos '
 class FormLoadHour extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value : '',
-                  fecha : '',
-                  apellido :'',
-                  Tareas:[],
-                  Tarea:''
+    this.state = {Descripcion : '',fecha : '',apellido :'',Hora :0,
+                  Tareas:[],Tarea:'1',Cliente : '1',
+                  Proyecto : '1',Proyectos: [],
+                  StadoEnvio: false,
+                  Clientes: [],FormLoadHour: false,
+                  PressSubmit: false
 				        };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
   handleChange = (event) => {
     this.setState({value: event.target.value});
-
   }
-
   handleChangeFecha = (event) => {
   this.setState({fecha: event.target.value});
   }
-
-  handleSubmit(event) {
-    console.log(this.state);
-
-    event.preventDefault();
-  }
-
   toggleShowTarea = (datachild) => {
-  	console.log(datachild);
   	this.setState({Tarea: datachild})
+  }
+  toggleShowProyecto = (datachild) => {
+    this.setState({Proyecto: datachild})
+  }
+  toggleShowCliente = (datachild) => {
+    this.setState({Cliente: datachild})
+  }
+  handleChangeDescripcion = (event) => {
+    this.setState({Descripcion: event.target.value})
+  }
+  handleChangeHora = (event) => {
+    this.setState({Hora: parseInt(event.target.value) })
+  }
+  sendDataForm = (Horas) =>{
+    fetch('/api/setUser',{
+                        method: 'POST', // or 'PUT'
+                        body: JSON.stringify(Horas), // data can be `string` or {object}!
+                        headers:{
+                          'Content-Type': 'application/json'
+                        }})
+    .then(res => res.json())
+    .then(nombresjson => {
+                            this.props.history.push('/Ms-Succes');
+                            console.log("susses",nombresjson);
+                          });
 
   }
+  handleSubmit(event) {
+
+    if (this.state.Cliente==='1'||this.state.Hora===0||this.state.Descripcion===''||this.state.Proyecto==='1'||this.state.Tarea==='1'||this.state.fecha==='') {
+      console.log("if");
+      this.setState({PressSubmit:true});
+      event.preventDefault();
+  
+    }else{
+      let Horas = {
+          User : JSON.parse(localStorage.getItem("sesion")).Id_Usuario,
+          Fecha : this.state.fecha ,
+          Descripcion : this.state.Descripcion,
+          Proyecto : this.state.Proyecto ,
+          Cliente :this.state.Cliente ,
+          Tarea : this.state.Tarea,
+          Hora : this.state.Hora
+      }
+      console.log("else");
+      this.setState({PressSubmit:false});
+      this.sendDataForm(Horas);
+      this.setState({StadoEnvio:true});
+      event.preventDefault();
+
+    }
+    
+    this.setState({FormLoadHour:true});
+
+
+  }
+
+
+
   componentDidMount(){
-
-        fetch('/api/getTasks',{method: 'GET'})
+    //TAREAS
+        fetch('/api/getTasks',{method: 'GET'}).then(res => res.json())
+        .then(nombresjson => {   this.setState({Tareas : nombresjson.recordsets[0]})});
+    //PROYECTOS
+        fetch('/api/getProject',{method: 'GET'})
         .then(res => res.json())
-        .then(nombresjson => {
-                              console.log("caso1",nombresjson.recordsets[0][0]);
-                              console.log("caso1",nombresjson.recordsets[0]);
-                              this.setState({Tareas : nombresjson.recordsets[0]})
-                              console.log("caso1",this.state.Tareas);
-
-                            });
+        .then(nombresjson => {   this.setState({Proyectos : nombresjson.recordsets[0]})});
+    //CLIENTES
+        fetch('/api/getClient',{method: 'GET'})
+        .then(res => res.json())
+        .then(nombresjson => {   this.setState({Clientes : nombresjson.recordsets[0]})});
   }
 
   render() {
+    const ErrorFormSubmit = (
+        <p className="ms-error">*Complete Todos Los Campos</p>
+    )
+    const ErrorTarea = (
+        <p className="ms-error">*Seleccione una Tarea</p>
+    )
+    const ErrorProyecto = (
+        <p className="ms-error">*Seleccione un Proyecto</p>
+    )
+    const ErrorCliente = (
+        <p className="ms-error">*Seleccione un Cliente</p>
+    )
+
+    const ErrorDescripccion = (
+        <p className="ms-error">*Describa lo que hizo en el dia</p>
+    )
+    const ErrorFecha = (
+        <p className="ms-error">*Ingrese una fecha</p>
+    )
+    const ErrorHora = (
+        <p className="ms-error">*Ingrese un Horario valido mayor a 0 y menor a 9</p>
+    )
+
+
+
     return (
       <form onSubmit={this.handleSubmit} className="form">
 
@@ -62,26 +135,57 @@ class FormLoadHour extends React.Component {
         <label>
           <p>Fecha : {this.state.fecha}</p>
           <input  type="date" value={this.state.fecha} onChange={this.handleChangeFecha} />
-          <p className="ms-error">*ingrese un valor valido</p>
+          {(this.state.fecha==='')&&this.state.PressSubmit?ErrorFecha:''}
+
         </label>
 
         <label>
-          <p>proyecto</p>
+          <p>Tareas :</p>
             <Selec  
                     options={this.state.Tareas} 
                     onChangea={this.toggleShowTarea} 
             />
-          <p className="ms-error">*Seleccione un valor</p>
+            {(this.state.Tarea==='1')&&this.state.PressSubmit?ErrorTarea:''}
+
         </label>
-        
+
         <label>
-         <p> Descripcion </p>
-          <input name="nombre" type="text" value={this.state.value} onChange={this.handleChange} />
-          <p className="ms-error">*Ingrese una descripcion de realizado</p>
+          <p>Proyecto :</p>
+            <Selec  
+                    options={this.state.Proyectos} 
+                    onChangea={this.toggleShowProyecto} 
+            />
+            {(this.state.Proyecto==='1')&&this.state.PressSubmit?ErrorProyecto:''}
+
         </label>
 
+        <label>
+          <p>Cliente :</p>
+            <Selec  
+                    options={this.state.Clientes} 
+                    onChangea={this.toggleShowCliente} 
+            />
+            {(this.state.Cliente==='1')&&this.state.PressSubmit?ErrorCliente:''}
+        </label>
 
-        <input type="submit" value="Submit" />
+        <label>
+         <p> Descripcion :</p>
+          <textarea name="Descripcion"  
+                    value={this.state.Descripcion} onChange={this.handleChangeDescripcion} />
+          {(this.state.Descripcion==='')&&this.state.PressSubmit?ErrorDescripccion:''}
+        </label>
+
+        <label>
+          <p>Hora : {this.state.Hora}</p>
+          <input  type="Number" value={this.state.Hora} onChange={this.handleChangeHora} />
+          {((this.state.Hora>8)||(this.state.Hora<0)||(this.state.Hora===0))&&this.state.PressSubmit?ErrorHora:''}
+
+        </label>
+
+        <input type="submit" value="Cargar" />
+
+
+            
       </form>
     );
   }

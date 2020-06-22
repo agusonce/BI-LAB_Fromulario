@@ -1,9 +1,10 @@
 .container{
-    background-color: rgb(76, 150,24);
+    background-color: rgba(76, 150,24,0);
     color: white;
     border-bottom: solid 1px #ccc;
     padding: 10px;
-    margin: 0 auto;
+    margin-bottom: 5px;
+    height: 60px;
 }
 .container .subcontainer{
     width: 800px;
@@ -14,32 +15,27 @@
     vertical-align: middle;
 }
 .logo{
-    color: #fff;
+color: #1e7e34;
     font-weight: bolder;
     font-size: 22px;
-    width: 100px;
+    width: 40%;
+    float: left;
 }
-
+.logo img{
+    height: 40px;
+}
+.nav{
+    background-color: transparent;
+    list-style: none;
+    float: right;
+}
 .search{
     width: 500px;
 }
 
-.search input{
-    width: calc(500px - 20px - 10px);
-    padding: 10px;
-    font-size: 16px;
-}
+
 .actions{
     width: 150px;
-}
-
-.actions ul, .actions ul li{
-    margin: 0;
-    list-style: none;
-}
-.actions ul li a{
-    display: inline;
-    padding: 10px;
 }
 
 
@@ -48,9 +44,14 @@
 
 .btn-white{
     color: white;
-
 }
-
+.btn-color1{
+    color: green;
+}
+button{
+    background-color: transparent;
+    border: none;
+}
 
 .new-item-panel-container{
     background-color: #000;
