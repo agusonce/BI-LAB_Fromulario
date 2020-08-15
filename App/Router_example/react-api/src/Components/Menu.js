@@ -7,7 +7,9 @@
 } from "react-router-dom";
  class Menu extends React.Component {
 
-  
+  constructor(props) {
+    super(props);
+  }  
   cerrarSesion = () => {
     console.log("presiono");
     localStorage.removeItem('sesion');
@@ -25,6 +27,9 @@
   
       const linklogueado = (
               <div className="nav">
+                  <div className="actions">
+                    <Link className="button btn-color1" to="/Administration">Administration</Link>
+                  </div>
                   <div className="actions">
                     <Link className="button btn-color1" to="/home">Home</Link>
                   </div>

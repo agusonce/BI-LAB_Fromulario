@@ -1,0 +1,30 @@
+.setTaskToProject{
+    width: 70%;
+    margin: auto;
+}
+.setTaskToProject {
+
+}
+.setTaskToProject button{
+	background-color: rgba(232, 232, 232, 0.06);
+    width: 100%;
+    text-align: center;
+    padding-left: 15px;
+    border-bottom: solid 1px green;
+    border-top: solid 1px green;
+    color: #008000;
+    font-size: 1em;
+	 transition: transform 0.3s ease;
+
+}
+.setTaskToProject button:hover{
+	transform: scaleX(0.99);
+    border: solid 1px green;
+}
+.setTaskToProject button:disabled{
+	border: solid 1px #00800052;
+	color: #00800052;
+}
+
+
+

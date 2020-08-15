@@ -1,0 +1,14 @@
+.ListRows{
+    width: 70%;
+    margin: auto;
+}
+
+
+.ListRows thead{
+    border-bottom: solid 1px green;
+    text-align: center;
+}
+.ListRows tbody{
+    text-align: center;
+}
+

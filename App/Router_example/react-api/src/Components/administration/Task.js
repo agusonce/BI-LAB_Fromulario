@@ -1,7 +1,8 @@
-import React from 'react';
+import React,{Component} from 'react';
 import Selec from './Selec';
-import '../css/FormLoadHour.css';
+import '../css/form.css';
 import {
+  Link,
   withRouter
 } from "react-router-dom";
 
@@ -99,14 +100,11 @@ class FormLoadHour extends React.Component {
      console.log(value);
         fetch('/api/getProject?Cliente='+value+'',{method: 'GET'})
         .then(res => res.json())
-        .then(nombresjson => {  
-          console.log("asdsa",nombresjson.recordsets[0]) ;
-          this.setState({Proyectos : nombresjson.recordsets[0]});
-      });
+        .then(nombresjson => {   this.setState({Proyectos : nombresjson.recordsets[0]})});
   }
 
     getTasks(value){
-     console.log("GETTAsk Project: ",value);
+     console.log(value);
        //TAREAS
         fetch('/api/getTasks?Project='+value+'',{method: 'GET'}).then(res => res.json())
         .then(nombresjson => {   this.setState({Tareas : nombresjson.recordsets[0]})});  
@@ -126,7 +124,9 @@ class FormLoadHour extends React.Component {
   }
 
   render() {
-
+    const ErrorFormSubmit = (
+        <p className="ms-error">*Complete Todos Los Campos</p>
+    )
     const ErrorTarea = (
         <p className="ms-error">*Seleccione una Tarea</p>
     )
@@ -150,68 +150,65 @@ class FormLoadHour extends React.Component {
 
 
     return (
-
-      <div className="FormLoadHour">
-            <form onSubmit={this.handleSubmit} className="form">
+      <form onSubmit={this.handleSubmit} className="form">
 
 
-              <label>
-                <p>Fecha : {this.state.fecha}</p>
-                <input  type="date" value={this.state.fecha} onChange={this.handleChangeFecha} />
-                {(this.state.fecha==='')&&this.state.PressSubmit?ErrorFecha:''}
+        <label>
+          <p>Fecha : {this.state.fecha}</p>
+          <input  type="date" value={this.state.fecha} onChange={this.handleChangeFecha} />
+          {(this.state.fecha==='')&&this.state.PressSubmit?ErrorFecha:''}
 
-              </label>
+        </label>
 
-              <label>
-                <p>Cliente :</p>
-                  <Selec  
-                          options={this.state.Clientes} 
-                          onChangea={this.toggleShowCliente} 
-                  />
-                  {(this.state.Cliente==='1')&&this.state.PressSubmit?ErrorCliente:''}
-              </label>
+        <label>
+          <p>Cliente :</p>
+            <Selec  
+                    options={this.state.Clientes} 
+                    onChangea={this.toggleShowCliente} 
+            />
+            {(this.state.Cliente==='1')&&this.state.PressSubmit?ErrorCliente:''}
+        </label>
 
-              <label>
-                <p>Proyecto :</p>
-                  <Selec  
-                          options={this.state.Proyectos} 
-                          onChangea={this.toggleShowProyecto} 
-                  />
-                  {(this.state.Proyecto==='1')&&this.state.PressSubmit?ErrorProyecto:''}
+        <label>
+          <p>Proyecto :</p>
+            <Selec  
+                    options={this.state.Proyectos} 
+                    onChangea={this.toggleShowProyecto} 
+            />
+            {(this.state.Proyecto==='1')&&this.state.PressSubmit?ErrorProyecto:''}
 
-              </label>
+        </label>
 
-              <label>
-                <p>Tareas :</p>
-                  <Selec  
-                          options={this.state.Tareas} 
-                          onChangea={this.toggleShowTarea} 
-                  />
-                  {(this.state.Tarea==='1')&&this.state.PressSubmit?ErrorTarea:''}
+        <label>
+          <p>Tareas :</p>
+            <Selec  
+                    options={this.state.Tareas} 
+                    onChangea={this.toggleShowTarea} 
+            />
+            {(this.state.Tarea==='1')&&this.state.PressSubmit?ErrorTarea:''}
 
-              </label>
-
-
-              <label>
-               <p> Descripcion :</p>
-                <textarea name="Descripcion"  
-                          value={this.state.Descripcion} onChange={this.handleChangeDescripcion} />
-                {(this.state.Descripcion==='')&&this.state.PressSubmit?ErrorDescripccion:''}
-              </label>
-
-              <label>
-                <p>Hora : {this.state.Hora}</p>
-                <input  type="Number" value={this.state.Hora} onChange={this.handleChangeHora} />
-                {((this.state.Hora>8)||(this.state.Hora<0)||(this.state.Hora===0))&&this.state.PressSubmit?ErrorHora:''}
-
-              </label>
-
-              <input type="submit" value="Cargar" />
+        </label>
 
 
-                  
-            </form>
-      </div>
+        <label>
+         <p> Descripcion :</p>
+          <textarea name="Descripcion"  
+                    value={this.state.Descripcion} onChange={this.handleChangeDescripcion} />
+          {(this.state.Descripcion==='')&&this.state.PressSubmit?ErrorDescripccion:''}
+        </label>
+
+        <label>
+          <p>Hora : {this.state.Hora}</p>
+          <input  type="Number" value={this.state.Hora} onChange={this.handleChangeHora} />
+          {((this.state.Hora>8)||(this.state.Hora<0)||(this.state.Hora===0))&&this.state.PressSubmit?ErrorHora:''}
+
+        </label>
+
+        <input type="submit" value="Cargar" />
+
+
+            
+      </form>
     );
   }
 }

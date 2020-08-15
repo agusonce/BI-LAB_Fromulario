@@ -1,4 +1,11 @@
-
+.logIn{
+  width: 50%;
+  margin: auto;
+  padding: 15px 30px;
+  font-size: 1.1em;
+  font-family: "Segoe UI";
+  font: icon;
+}
 .formLogin {
   position: relative;
   width  : 100%;

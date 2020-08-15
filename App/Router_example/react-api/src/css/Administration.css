@@ -1,0 +1,40 @@
+.administration{
+    direction: flex;
+}
+.nav-vertical{
+    width: 30%;
+    float: left;
+}
+.container-administration{
+    width: 70%;
+    float: left;
+
+}
+
+
+
+.menu-administration{
+  border: 2px solid #eee ;
+
+}
+.menu-administration .option{
+
+}
+
+.menu-administration .option button{
+background-color: rgba(232, 232, 232, 0.06);
+    width: 100%;
+    text-align: left;
+    padding-left: 15px;
+    border-bottom: solid 1px green;
+
+}
+.menu-administration .option .sub-menu{
+    width: 100%;
+}
+.menu-administration .option .sub-menu .button{
+    background-color: rgba(154, 236, 142, 0.23);
+    display: inline-block;
+    width: 100%;
+    padding-left: 30px;
+}

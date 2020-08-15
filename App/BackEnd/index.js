@@ -27,15 +27,7 @@ var port = 3700;
  		}
         // create Request object
         var request = new sql.Request();
- 			
-           
-        // query to the database and get the records
-       // request.query('select * from COMITENTE', function (err, recordset) {
-       //     if (err) console.log(err)
-            // send records as a response
-       //    console.log(recordset);
-       //     
-     //  });
+
        
     });
 

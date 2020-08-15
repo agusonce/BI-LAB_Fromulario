@@ -1,8 +1,9 @@
 import React from 'react';
-import SignIn from './SignIn';
+import LogIn from './LogIn';
 import SignUp from './SignUp';
 import Home from './Home';
 import Ms from './Ms';
+import Administration from './administration/Administration';
 import FormLoadHour from './FormLoadHour';
 
 import '../css/Main.css';
@@ -16,7 +17,7 @@ import '../css/Main.css';
  class Main extends React.Component {
     render(){
         const linkSignIn = (
-              <SignIn />
+              <LogIn />
         );
         const linkSignUp = (
               <SignUp />
@@ -34,6 +35,9 @@ import '../css/Main.css';
         );
         const linkLoadHour = (
               <FormLoadHour />
+        );
+        const linkAdministration = (
+              <Administration />
         );
 
 
@@ -66,6 +70,11 @@ import '../css/Main.css';
             <Route path="/Load-hours">
               <div className="login">
                  {(localStorage.getItem("sesion"))?linkLoadHour:linkSignUp}
+              </div>
+            </Route>
+            <Route path="/Administration">
+              <div className="login">
+                 {(localStorage.getItem("sesion"))?linkAdministration:linkSignUp}
               </div>
             </Route>
             <Route path="/Ms-Error">

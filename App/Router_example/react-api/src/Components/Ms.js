@@ -1,5 +1,4 @@
 import React from 'react';
-import Selec from './Selec';
 import '../css/Ms.css';
 import {
   Link,
@@ -40,7 +39,7 @@ class Ms extends React.Component {
     return (
      <div className="ms-result">
 
-{this.props.message=="error"?MessageError:MessageSucces}
+{this.props.message==="error"?MessageError:MessageSucces}
 
      </div>
     );

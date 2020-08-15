@@ -1,0 +1,25 @@
+.tableHoursUser{
+	margin: auto;
+}
+
+.tableHoursUser thead tr{
+	background-color: #0087ff1c;
+	    border-bottom: solid 1px green;
+}
+.tableHoursUser thead tr td{
+	    background-color: #e1f7e6;
+	padding: 5px 10px;
+}
+
+.tableHoursUser tbody tr td{
+	padding: 5px 10px;
+}
+
+.tableHoursUser tr th{
+	background-color: #ffff0000;
+	padding: 5px 10px;
+}
+.listHours{
+}
+.listHours div{
+}
