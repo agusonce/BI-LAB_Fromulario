@@ -13,6 +13,7 @@ var multipart = require('connect-multiparty');
 
 router.get('/', usercontrollers.test);
 
+router.get('/getListAllTasksProject', taskcontrollers.getListAllTasksProject);
 router.get('/getListAllTasks', taskcontrollers.getListAllTasks);
 router.get('/getAllTasks', taskcontrollers.getAllTasks);
 router.get('/getTasks', taskcontrollers.getTasks);
@@ -30,6 +31,8 @@ router.post('/setProject', projectcontrollers.setProject);
 router.post('/setProjectClient', projectcontrollers.setProjectClient);
 
 router.get('/getClient', clientcontrollers.getClient);
+router.get('/ListAllClient', clientcontrollers.ListClient);
+router.post('/setClient', clientcontrollers.setClient);
 router.post('/getUser', usercontrollers.getUser);
 
 router.get('/getHours', hourscontrollers.GetHours);

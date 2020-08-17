@@ -58,6 +58,18 @@ var controller = {
             
         });
 	},
+	getListAllTasksProject: function(req,res){
+		
+		var request = new sql.Request();
+		request.query("SELECT row_number() OVER (ORDER BY  P.[Proyecto],T.[Tarea]) [Key], P.[Proyecto] Value1,T.[Tarea] Value2 FROM [BI-LAB].[dbo].[Proyectos_x_Tareas] PxT  INNER JOIN Proyectos P ON P.Id_Proyecto=PxT.Id_Proyecto  LEFT JOIN Tareas T ON T.Id_Tarea=PxT.Id_Tarea WHERE PxT.Id_Tarea!=1  ORDER BY Proyecto", function (err, TasksProject) {
+            
+            if (err) console.log(err)
+            	console.log(TasksProject);
+            // send records as a response
+            return res.status(200).send(TasksProject);
+            
+        });
+	},
 	setTask: function(req,res){
 		var task = req.body.task;
 		let query = "INSERT INTO [BI-LAB].[dbo].[Tareas] ([Tarea]) VALUES ('"+task+"')";

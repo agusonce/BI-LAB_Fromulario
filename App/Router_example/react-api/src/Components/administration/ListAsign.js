@@ -1,7 +1,7 @@
 import React from 'react';
-import '../../css/ListProjectClient.css';
+import '../../css/ListAsign.css';
 
-    function ListProjectClient(props) {
+    function ListAsign(props) {
         return (
           <div>
             <table className="ListRows">
@@ -24,10 +24,10 @@ import '../../css/ListProjectClient.css';
                   props.body.map(datos => 
                      <tr key={datos.Key}>
                          <td>
-                           {datos.Client}
+                           {datos.Value1}
                          </td> 
                           <td>
-                           {datos.Project}
+                           {datos.Value2}
                          </td>                     
                      </tr>
                   )
@@ -40,4 +40,4 @@ import '../../css/ListProjectClient.css';
     }
 
 
- export default ListProjectClient;
+ export default ListAsign;

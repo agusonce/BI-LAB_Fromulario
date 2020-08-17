@@ -1,8 +1,10 @@
 import React from 'react';
 import SetProjectToUser from './SetProjectToUser';
+import SetProjectToClient from './SetProjectToClient';
 import SetTaskToProject from './SetTaskToProject';
 import NewProject from './NewProject';
 import NewTask from './NewTask';
+import NewClient from './NewClient';
 
 
  import {
@@ -18,7 +20,7 @@ import NewTask from './NewTask';
     render(){
         const linkAdministration = (
               <div>
-                <SetProjectToUser />
+                <SetProjectToClient />
               </div>
         );
         const linkSendSignIn = (
@@ -43,7 +45,12 @@ import NewTask from './NewTask';
               <Route path="/Administration/New-Task">
                 <NewTask />
               </Route>
-              
+              <Route path="/Administration/set-client">
+                <SetProjectToClient />
+              </Route>
+            <Route path="/Administration/new-client">
+                <NewClient />
+              </Route>
             </Switch>
           </div>
         );

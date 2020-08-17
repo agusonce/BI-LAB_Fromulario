@@ -63,7 +63,7 @@ var controller = {
         });
 	},
 	getListProjectClient: function(req,res){
-		let query = "SELECT row_number() OVER (ORDER BY C.[Cliente], P.[Proyecto]) [Key],C.[Cliente] [Client],P.[Proyecto] Project  FROM [dbo].[Proyectos_x_Clientes] P_x_C left join [dbo].Proyectos P on p.Id_Proyecto=P_x_C.Id_Proyecto left join [dbo].Clientes C on C.Id_Cliente = P_X_C.Id_Cliente  where C.Id_Cliente<>1 and P.Id_Proyecto<>1 order by C.cliente";
+		let query = "SELECT row_number() OVER (ORDER BY C.[Cliente], P.[Proyecto]) [Key],C.[Cliente] [Value1],P.[Proyecto] Value2  FROM [Proyectos_x_Clientes] P_x_C left join [dbo].Proyectos P on p.Id_Proyecto=P_x_C.Id_Proyecto left join [dbo].Clientes C on C.Id_Cliente = P_X_C.Id_Cliente  where C.Id_Cliente<>1 and P.Id_Proyecto<>1 order by C.cliente";
 		var request = new sql.Request();
 		
 		request.query(query, function (err, Projects) {            

@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../css/SetTaskToProject.css';
 import Selec from '../Selec';
+import ListAsign from './ListAsign';
 
 import {
   withRouter
@@ -16,7 +17,7 @@ class SetTaskToProject extends React.Component {
                   PressSubmit: false,
                   Tasks : [],
                   Task :'1',
-                  ListProjectClient : []
+                  ListAllTaskProject : []
 
 				        };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,7 +26,11 @@ class SetTaskToProject extends React.Component {
   getAllProyecto(){
         fetch('/api/getAllProject',{method: 'GET'})
         .then(res => res.json())
-        .then(nombresjson => {   this.setState({Proyectos : nombresjson.recordsets[0]})});
+        .then(nombresjson => { 
+          this.setState({Proyectos : nombresjson.recordsets[0]});
+          console.log("succes uno:", nombresjson.recordsets[0]);
+
+        });
   }
   getAllTasks(Project){
      //PROYECTOS
@@ -59,10 +64,13 @@ class SetTaskToProject extends React.Component {
 
       this.setState({Proyecto: '1'});
       this.setState({Task: '1'});
-      this.getAllTasks('1');
+      this.setState({Proyectos : []});
       this.getAllProyecto();
-
+      this.setState({Tasks : []});
+      this.getAllTasks('1');
+      this.getListAllTasksProject();
       console.log("susses",nombresjson);
+
     });
 
   }
@@ -81,17 +89,18 @@ class SetTaskToProject extends React.Component {
       this.getAllTasks('1');
       this.getAllProyecto();
 
-      this.getAllProjectClient();
+      this.getListAllTasksProject();
       
    }
 
-  getAllProjectClient(){
+  getListAllTasksProject(){
      //PROYECTOS
-   /*     fetch('/api/getAllProjectClient',{method: 'GET'})
+        fetch('/api/getListAllTasksProject',{method: 'GET'})
         .then(res => res.json())
-        .then(nombresjson => {   this.setState({ListProjectClient : nombresjson.recordsets[0]})});
-        console.log(this.state.ListProjectClient);
-  */}
+        .then(nombresjson => { 
+          this.setState({ListAllTaskProject : nombresjson.recordsets[0]});
+      });
+  }
 
   render() {
         const ErrorProyecto = (
@@ -130,9 +139,9 @@ class SetTaskToProject extends React.Component {
                       {(this.state.Task==='1')&&this.state.PressSubmit?ErrorTask:''}
                     </label>
                     <button className="button" disabled={this.state.PressSubmit||(this.state.Task==='1'||this.state.Proyecto==='1')?true:false} onClick={this.handleSubmit} >Enviar </button>
-
-                   
                 </form>
+
+                < ListAsign Headers={Header} body={this.state.ListAllTaskProject} />
           </div>
         );
   }

@@ -35,16 +35,13 @@ class Administration extends React.Component {
         );
        const linkProject = (
                <div className="sub-menu">
-                      <Link className="button btn-color1" to="/Administration/Project">Assign project to user</Link>
                       <Link className="button btn-color1" to="/Administration/new-Project">new Project</Link>
                       <Link className="button btn-color1" to="/Administration/set-Project">Assing Project to Customer</Link>
                     </div>
         );
        const linkClient = (
                <div className="sub-menu">
-                      <Link className="button btn-color1" to="/Administration/Client">Client</Link>
                       <Link className="button btn-color1" to="/Administration/new-Client">new Client</Link>
-                      <Link className="button btn-color1" to="/Administration/set-Client">set Client</Link>
                     </div>
         );
     return (

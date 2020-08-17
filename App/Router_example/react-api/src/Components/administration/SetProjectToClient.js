@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../css/SetProjectToUser.css';
+import '../../css/SetProjectToClient.css';
 import Selec from '../Selec';
 import ListAsign from './ListAsign';
 
@@ -8,16 +8,16 @@ import {
 } from "react-router-dom";
 
 // FormLoadHour: variable para saber a si hay que mostrar el ms de 'complete todos los campos '
-class SetProjectToUser extends React.Component {
+class SetProjectToClient extends React.Component {
   constructor(props) {
     super(props);
     this.state = {Descripcion : '',fecha : '',apellido :'',Hora :0,
                   Proyecto : '1',Proyectos: [],
-                  Clientes: [],Cliente: 1,
+                  Clientes: [],Cliente: '1',
                   PressSubmit: false,
-                  ListProjectUser : []
+                  ListProjectClient : []
 
-				        };
+                };
     this.handleSubmit = this.handleSubmit.bind(this);
 
   }
@@ -49,7 +49,12 @@ class SetProjectToUser extends React.Component {
                         }})
     .then(res => res.json()).then(nombresjson => {
         this.getAllProjectClient();
-        console.log("susses",nombresjson);
+        this.setState({Cliente : '1'});
+        this.setState({Proyecto : '1'});
+        this.setState({Clientes :[]});
+        this.setState({Proyectos : []});
+        this.getAllProyects('1');
+        this.getAllClients();
     });
 
   }
@@ -70,13 +75,13 @@ class SetProjectToUser extends React.Component {
 
   getAllProjectClient(){
      //PROYECTOS
-        /*fetch('/api/getListProjectUser',{method: 'GET'})
+        fetch('/api/getListProjectClient',{method: 'GET'})
         .then(res => res.json())
         .then(nombresjson => {  
-         this.setState({ListProjectUser : nombresjson.recordsets[0]});
+         this.setState({ListProjectClient : nombresjson.recordsets[0]});
         console.log( nombresjson.recordsets[0]);
 
-       });*/
+       });
   }
 
   render() {
@@ -95,7 +100,7 @@ class SetProjectToUser extends React.Component {
 
 
         return (
-          <div className="setProjectToUser">
+          <div className="setProjectToClient">
                   <label>Asignacion de Proyecto </label>
                  <form  className="form">
 
@@ -118,9 +123,9 @@ class SetProjectToUser extends React.Component {
                     <button className="button" disabled={this.state.PressSubmit||(this.state.Cliente==='1'||this.state.Proyecto==='1')?true:false} onClick={this.handleSubmit} >Asignar </button>
 
                 </form>
-                < ListAsign Headers={Header} body={this.state.ListProjectUser} />
+                < ListAsign Headers={Header} body={this.state.ListProjectClient} />
           </div>
         );
   }
 }
-export default  withRouter(SetProjectToUser);
+export default  withRouter(SetProjectToClient);
